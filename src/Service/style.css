@@ -1,0 +1,87 @@
+.bodycont{
+    /* background-image:url( "../assets/expense.jpg"); */
+    margin:0;
+    padding:0;
+}
+.container{
+    border: 3px solid black;
+    padding:50px;
+    align-items: center;
+    width:80%;
+    margin-left:250px;
+    background-color: rgb(177, 177, 228);
+    border-radius: 0.5cm;
+    box-shadow: 3px;
+}
+.divi1{
+    color: black;
+    font-size: larger;
+    font-weight: bold;
+    padding: 20px;
+    margin-left:50px;
+}
+label{
+    align-items: center;
+}
+input{
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 0.2cm;
+    width:60%;
+    float:inline-end;
+    font-size:medium;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-style: normal;
+}
+select{
+    width: 64%;
+    float:inline-end;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 0.2cm;
+    font-size:medium;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-style: normal;
+}
+button{
+    margin-left: 350px;
+    padding-left:25px;
+    align-items: center;
+}
+Table{
+    border-radius: 2px;
+    margin: 10px;
+    align-items: center;
+}
+.tablehead{
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    background-color: #42a5f5;
+}
+nav{
+    margin: 0;
+    padding:0;
+}
+ul{
+    display:flex;
+    text-decoration: none;
+    list-style-type: none;
+}
+li{
+    margin-right: 10px;
+}
+.right_nav{
+    float:right;
+}
+
+.menus button{
+    display:block;
+    justify-content: space-between;
+    align-items: center;
+}
+.dashboard{
+    float:right;
+}
