@@ -11,13 +11,32 @@ function RejectedExpenses(){
     const [allRejExpDetails, setAllRejExpDetails]=useState([])
     const navigate=useNavigate();
     useEffect(()=>{
-        axios.get("http://localhost:3000/rejectedExpenses")
+        const token=localStorage.getItem('token')
+        const empId=localStorage.getItem('employeeId')
+        const isAdmin = UserService.isAdmin();
+         const isManager=UserService.isManager();
+        if(isManager){
+        axios.get(`http://localhost:8091/manager/get/rejected/expenserequests/${empId}`,
+              {
+                 headers:{Authorization:`Bearer ${token}`}
+            })
         .then(res=>setAllRejExpDetails(res.data))
         .catch(err=>console.log(err))
+        }
+        if(isAdmin){
+         axios.get(`http://localhost:8091/admin/get/rejected/expenserequests/${empId}`,
+            {
+                 headers:{Authorization:`Bearer ${token}`}
+            }
+        )
+        .then(res=>setAllRejExpDetails(res.data))
+        .catch(err=>console.log(err))   
+    }
     },[])
 
     const handleView=async(expenseId)=>{
-    navigate(`/viewPage/${expenseId}`);
+    localStorage.setItem('expRequestId',expenseId)
+    navigate(`/viewPage`);
 }
 
     return(
@@ -34,7 +53,10 @@ function RejectedExpenses(){
                             <TableCell>Expense Date</TableCell>
                             <TableCell>Expense Amount</TableCell>
                             <TableCell>Description</TableCell>
+                           <TableCell>Manager status</TableCell>
+                            <TableCell>Admin status</TableCell>
                             <TableCell>Status</TableCell>
+                            <TableCell>Rejected Date</TableCell>
                             <TableCell>Actions</TableCell>
                         </TableRow>
                     </TableHead>
@@ -43,14 +65,17 @@ function RejectedExpenses(){
                             allRejExpDetails.map((details)=>{
                                 return <TableRow key={details.expenseId}>
                                     <TableCell>{details.empId}</TableCell>
-                                    <TableCell>{details.ExpRequestId}</TableCell>
+                                    <TableCell>{details.expRequestId}</TableCell>
                                     <TableCell>{details.empName}</TableCell>
                                     <TableCell>{details.type}</TableCell>
                                     <TableCell>{details.exp_date}</TableCell>
                                     <TableCell>{details.Amount}</TableCell>
                                     <TableCell>{details.description}</TableCell>
+                                    <TableCell>{details.manager_status}</TableCell>
+                                    <TableCell>{details.admin_status}</TableCell>
                                     <TableCell>{details.status}</TableCell>
-                                    <TableCell><IconButton onClick={()=>handleView(details.expenseId)}><VisibilityIcon color='primary'></VisibilityIcon></IconButton></TableCell>
+                                    <TableCell>{details.approvedDate}</TableCell>
+                                    <TableCell><IconButton onClick={()=>handleView(details.expRequestId)}><VisibilityIcon color='primary'></VisibilityIcon></IconButton></TableCell>
                                 </TableRow>
                             })
                         }

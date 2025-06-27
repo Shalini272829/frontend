@@ -14,12 +14,18 @@ import AllEmployees from './Components/AllEmployees';
 import ApprovedExpenses from './Components/ApprovedExpenses';
 import RejectedExpenses from './Components/RejectedExpenses';
 import CreateEmployee from './Components/CreateEmployee';
+import EditEmployee from './Components/EditEmployee';
+import ViewEmployee from './Components/ViewEmployee';
+import PasswordReset from './Components/PasswordReset';
+import Analytics from './Components/Analytics';
+import FileUpload from './Components/FileUpload';
 
 
 function App() {
 
   return (
-    <><BrowserRouter>
+    <>
+    <BrowserRouter>
        <div className="content">
               {/* <Nav/> */}
          <Routes>
@@ -27,12 +33,16 @@ function App() {
           <Route path="/registerExpense" element={<RegisterExpense />} />
           <Route path="/employeePage" element={<EmployeePage/>}/>
           <Route path="/editPage/:expRequestID" element={<EditPage/>}/>
-          <Route path="/viewPage/:expenseID" element={<ViewPage/>}/>
+          <Route path="/viewPage" element={<ViewPage/>}/>
           <Route path="/allExpenses" element={<AllExpenses/>}/>
           <Route path="/allEmployees" element={<AllEmployees/>}/>
           <Route path="/allApprovedExpenses" element={<ApprovedExpenses/>}/>
           <Route path="/allRejectedExpenses" element={<RejectedExpenses/>}/>
+          <Route path="/editEmployee" element={<EditEmployee/>}/>
+          <Route path="/viewEmployee" element={<ViewEmployee/>}/>
           <Route path="/createEmployee" element={<CreateEmployee/>}/>
+          <Route path="/passwordReset" element={<PasswordReset/>}/>
+          <Route path="/analytics" element={<Analytics/>}/>
       </Routes>
 
      </div>

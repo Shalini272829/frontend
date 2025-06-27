@@ -10,9 +10,9 @@ import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 function Navbar() {
-    // const isAuthenticated = UserService.isAuthenticated();
-    // const isAdmin = UserService.isAdmin();
-    // const isManager=UserService.isManager();
+    const isAuthenticated = UserService.isAuthenticated();
+    const isAdmin = UserService.isAdmin();
+    const isManager=UserService.isManager();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleMenuClick = (event) => {
@@ -21,9 +21,9 @@ function Navbar() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const isAuthenticated = true
-    const isAdmin = true
-    const isManager=false
+    // const isAuthenticated = true
+    // const isAdmin = true
+    // const isManager=false
     var empName=localStorage.getItem('employeeName');
 
 
@@ -45,6 +45,9 @@ function Navbar() {
     const handleReporteesDetails=async=>{
         navigate("/allEmployees");
     }
+    const handlePasswordReset=async=>{
+        navigate("/passwordReset");
+    }
     const handleLogout=async=>{
         try{
             const confirmLogout=window.confirm("Are you sure you want to logout?");
@@ -56,6 +59,9 @@ function Navbar() {
             console.log("error in logging out")
         }
     }
+    const handleAnalytics=async=>{
+        navigate("/analytics");
+    }
 
 
     return (
@@ -64,6 +70,7 @@ function Navbar() {
         <ul>
         {isAuthenticated && <li><Button variant="contained">My Expenses</Button></li>}
         {isAuthenticated && <li><Button variant="contained" onClick={handleClick}>Register Expense</Button></li>}
+        {isAuthenticated && <li><Button variant="contained" color="primary"onClick={handleAnalytics}>Analytics & Reports</Button></li>}
         {(isAdmin || isManager) && <li><Button variant="contained" onClick={handleReporteesExpenses}>Reportees Expenses</Button></li>}
         {(isAdmin || isManager) && <li><Button variant="contained" onClick={handleApprovedExpenses}>Approved Expenses</Button></li>}
         {(isAdmin || isManager) && <li><Button variant="contained" onClick={handleRejectedExpenses}>Rejected Expenses</Button></li>}
@@ -77,8 +84,8 @@ function Navbar() {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem  onClick={handleClose}>Profile</MenuItem>
         <MenuItem  onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handlePasswordReset}>Reset Password</MenuItem>
         <MenuItem  onClick={handleLogout}>Logout</MenuItem>
       </Menu>
 

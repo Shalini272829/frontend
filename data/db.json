@@ -150,5 +150,70 @@
           "status":"Rejected",
           "exp_date":"2025-05-15"
       }
+    ],
+
+    "ApprovalRequests":[
+      {
+        "label":"Approved",
+        "value":"5"
+      },
+       {
+        "label":"Pending",
+        "value":"2"
+      },
+       {
+        "label":"Rejected",
+        "value":"1"
+      },
+       {
+        "label":"Auto-Approved",
+        "value":"5"
+      }
+    ],
+    "ExpenseCategories":[
+      {
+        "label":"Business Food",
+        "value":"3"
+      },
+      {
+        "label":"Business Travel",
+        "value":"36"
+      },
+      {
+        "label":"Hotel Stay",
+        "value":"2"
+      },
+      {
+        "label":"Others",
+        "value":"8"
+      }
+    ],
+    "MonthlyData":[
+      { "label":"January","value":"5000"},
+      { "label":"February","value":"2000"},
+      { "label":"March","value":"4500"},
+      { "label":"April","value":"10000"},
+      { "label":"May","value":"0"},
+      { "label":"June","value":"1000"},
+      { "label":"July","value":"2500"},
+      { "label":"August","value":"3000"},
+      { "label":"September","value":"0"},
+      { "label":"October","value":"1500"},
+      { "label":"November","value":"6000"},
+      { "label":"December","value":"5000"}
+    ],
+
+    "yearlyData":[
+      { "x":"2015","y":"5000"},
+      { "x":"2016","y":"2000"},
+      { "x":"2017","y":"4500"},
+      { "x":"2018","y":"10000"},
+      { "x":"2019","y":"0"},
+      { "x":"2020","y":"1000"},
+      { "x":"2021","y":"2500"},
+      { "x":"2022","y":"3000"},
+      { "x":"2023","y":"0"},
+      { "x":"2024","y":"1500"},
+      { "x":"2025","y":"6000"}
     ]
 }

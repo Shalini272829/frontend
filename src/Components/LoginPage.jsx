@@ -22,10 +22,16 @@ function LoginPage(){
                 localStorage.setItem('role',userData.role);
                 localStorage.setItem('employeeId',userData.employee.employeeId)
                 localStorage.setItem('employeeName',userData.employee.empName)
+                localStorage.setItem('managerEmpId',userData.employee.managerEmpId)
+                localStorage.setItem('adminEmpId',userData.employee.adminEmpId)
+                localStorage.setItem('employeeEmailId',userData.employee.emailID)
+                localStorage.setItem('managerEmailId',userData.employee.managerEmailId)
+                localStorage.setItem('username',userData.employee.username);
                 navigate("/employeePage");
             }
             else{
                 setError(userData.message);
+                console.log(error)
             }
         }
         catch(error){

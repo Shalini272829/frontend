@@ -60,6 +60,10 @@ Table{
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     background-color: #42a5f5;
+    position: sticky;
+    top:0;
+    z-index: 100;
+    column-width: 1000px;
 }
 nav{
     margin: 0;
@@ -83,5 +87,36 @@ li{
     align-items: center;
 }
 .dashboard{
+    float:right;
+    background-color: rgba(rgb(236, 122, 29), rgb(35, 170, 35), rgb(27, 93, 216), );
+}
+.chart{
+    float:right;
+}
+/* .bar_container{
+    width:800;
+    height:700; 
+    border: 2px solid black;
+}  */
+.box1{
+    border: 2px solid black;
+    height:300px;
+    width:50%;
+    float: left;
+    /* overflow: hidden; */
+    /* margin-right: 2%; */
+}
+.box2{
+    border: 2px solid black;
+    height:300px;
+    width:50%;
+    float: left;
+    /* overflow: hidden; */
+    /* margin-right: 2%; */
+}
+.topexp{
+    float:right;
+ }
+.right_cont{
     float:right;
 }

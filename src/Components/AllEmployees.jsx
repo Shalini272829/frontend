@@ -14,10 +14,43 @@ function AllExpenses(){
     const [allEmpDetails, setAllEmpDetails]=useState([])
     const navigate=useNavigate();
     useEffect(()=>{
-        axios.get("http://localhost:3000/employeeDetails")
+        const token=localStorage.getItem('token');
+        axios.get("http://localhost:8091/admin/get/employeeDetails",
+            {
+                    headers:{Authorization:`Bearer ${token}`}
+            }
+        )
         .then(res=>setAllEmpDetails(res.data))
         .catch(err=>console.log(err))
     },[])
+
+    const handleEdit=async(employeeId)=>{
+        localStorage.setItem('tempEmpId',employeeId);
+        navigate("/editEmployee");
+    }
+
+     const handleDelete=async(employeeId)=>{
+        const confirmDelete=window.confirm("Are you sure you want to delete the selected employee record");
+        if(confirmDelete){
+            try{
+                const token=localStorage.getItem('token')
+                axios.delete(`http://localhost:8091/admin/delete/employee/${employeeId}`,
+                    {
+                         headers:{Authorization:`Bearer ${token}`}
+                    }
+                ).then(response=>{console.log(response.data)})
+                .catch(error=>console.log(error))
+                navigate("/editEmployee");
+            }
+            catch(error){
+            console.log(error)}
+        }
+    }
+
+    const handleView=async(employeeId)=>{
+         localStorage.setItem('tempEmpId',employeeId);
+        navigate("/viewEmployee");
+    }
 
     const handleCreate=async=>{
         navigate("/createEmployee");
@@ -36,22 +69,26 @@ function AllExpenses(){
                             <TableCell>Username</TableCell>
                             <TableCell>Employee Status</TableCell>
                             <TableCell>Role</TableCell>
+                            <TableCell>Manager Employee Id</TableCell>
+                            <TableCell>Admin Employee Id</TableCell>
                             <TableCell>Actions</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {
                             allEmpDetails.map((details)=>{
-                                return <TableRow key={details.expenseId}>
-                                    <TableCell>{details.empId}</TableCell>
+                                return <TableRow key={details.employeeId}>
+                                    <TableCell>{details.employeeId}</TableCell>
                                     <TableCell>{details.empName}</TableCell>
-                                    <TableCell>{details.emailId}</TableCell>
+                                    <TableCell>{details.emailID}</TableCell>
                                     <TableCell>{details.username}</TableCell>
                                     <TableCell>{details.employeeStatus}</TableCell>
                                     <TableCell>{details.role}</TableCell>
-                                    <TableCell><IconButton onClick={()=>handleEdit(details.expenseId)}><EditIcon color='primary'></EditIcon></IconButton>
-                        <IconButton onClick={()=>handleDelete(details.expenseId)}><DeleteIcon color='primary'></DeleteIcon></IconButton>
-                            <   IconButton onClick={()=>handleView(details.expenseId)}><VisibilityIcon color='primary'></VisibilityIcon></IconButton></TableCell>
+                                    <TableCell>{details.managerEmpId}</TableCell>
+                                    <TableCell>{details.adminEmpId}</TableCell>
+                                    <TableCell><IconButton onClick={()=>handleEdit(details.employeeId)}><EditIcon color='primary'></EditIcon></IconButton>
+                        <IconButton onClick={()=>handleDelete(details.employeeId)}><DeleteIcon color='primary'></DeleteIcon></IconButton>
+                            <   IconButton onClick={()=>handleView(details.employeeId)}><VisibilityIcon color='primary'></VisibilityIcon></IconButton></TableCell>
                                 </TableRow>
                             })
                         }
